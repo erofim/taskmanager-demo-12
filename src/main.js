@@ -1,12 +1,17 @@
 const TASK_COUNT = 3;
-
+const RenderPosition = {
+  BEFOREBEGIN: 'beforebegin',
+  AFTERBEGIN: 'afterbegin',
+  BEFOREEND: 'beforeend',
+  AFTEREND: 'afterend',
+};
 /*
 * Отрисовка элемента страницы ("компонента")
 * @param {HTMLElement} container - контейнер, в который отрисовывается шаблон
 * @param {string} template - отрисовываемый шаблон
 * @param {string} position - место в контейнере для отрисовывания
 */
-const render = (container, template, position = 'beforeend') =>
+const render = (container, template, position = RenderPosition.BEFOREEND) =>
   container.insertAdjacentHTML(position, template);
 
 
@@ -369,7 +374,7 @@ render(siteMainElement, createSiteBoardTemplate());
 const boardElement = siteMainElement.querySelector('.board');
 const taskListElement = siteMainElement.querySelector('.board__tasks');
 
-render(boardElement, createSortBoardTemplate(),'afterbegin');
+render(boardElement, createSortBoardTemplate(),RenderPosition.AFTERBEGIN);
 
 render(taskListElement, createTaskEditTemplate());
 for (let i = 1; i <= TASK_COUNT; i++) {
